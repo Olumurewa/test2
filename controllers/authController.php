@@ -20,18 +20,20 @@ class authController{
             else
             {
                 $validPassword = password_verify($passwordAttempt, $user['password']);
-            }
-            if($validPassword)
-            {
-                if($user['isVerified'] == 0){
-                    echo '<script>alert("You have not verified your E-mail")</script>';
-                    echo '<script>window.location.replace("verify.php");</script>';
+                if($validPassword)
+                {
+                    $_SESSION['email'] = $email;
+                    if($user['isVerified'] == 0){
+                        echo '<script>alert("You have not verified your E-mail")</script>';
+                        echo '<script>window.location.replace("verify.php");</script>';
+                    }
+                } 
+                else
+                {
+                    echo '<script>alert("invalid username or password")</script>';
                 }
-            } 
-            else
-            {
-                echo '<script>alert("invalid username or password")</script>';
             }
+            
         }catch(PDOException $e) 
         {
             $error = "Error: " . $e->getMessage();
