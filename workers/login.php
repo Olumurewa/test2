@@ -1,5 +1,5 @@
 <?php 
-require '../views/register.view.php';
+require '../views/login.view.php';
 require '../controllers/authController.php';
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);

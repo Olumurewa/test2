@@ -25,7 +25,6 @@ class authController{
             {
                 $_SESSION['email'] = $email;
                 $_SESSION['userID'] = $user['userID'];
-                dbFunction::OtpGenerator($user['userID']);
                 echo '<script>window.location.replace("verify.php");</script>';
                 exit; 
             } 
