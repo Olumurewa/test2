@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require '../views/login.view.php';
 require '../controllers/authController.php';
 ini_set('display_errors', 1);

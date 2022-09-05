@@ -10,7 +10,7 @@
     <div>
         <nav>
             <ul>
-                <li><a href='#'>LOGIN</a></li>
+                <li><a href='login.php'>LOGIN</a></li>
 
                 <li class='list-item'><a href='register.php'>REGISTER</a></li>
 
@@ -27,13 +27,9 @@
     <div>
 
     <form class='elevate' action='../workers/login.php' method='post'>
-        <h1>LOGIN</h1>
-        <input required='required' type='email' name='email' placeholder='Email'><br/>
-        <input required='required' type='password' name='password' placeholder='Password'><br/>
-        <button name='submit' type='submit'>login</button>
-        <a href="">Forgot Password?</a>
-    </form>
-    
+        <h1>Verify</h1>
+        <p>a mail will be seent to your registered mail<p>
+        <button name='submit' type='submit'>Verify</button></form>
 
     </div>
     <style>

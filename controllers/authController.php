@@ -23,10 +23,10 @@ class authController{
             }
             if($validPassword)
             {
-                $_SESSION['email'] = $email;
-                $_SESSION['userID'] = $user['userID'];
-                echo '<script>window.location.replace("verify.php");</script>';
-                exit; 
+                if($user['isVerified'] == 0){
+                    echo '<script>alert("You have not verified your E-mail")</script>';
+                    echo '<script>window.location.replace("verify.php");</script>';
+                }
             } 
             else
             {
