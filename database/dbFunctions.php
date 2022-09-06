@@ -43,7 +43,8 @@ class dbFunctions{
         try{
             $stmt = $db->conn->prepare($sql);
             $stmt->execute([$email]);
-            $details[]=$stmt->fetch(PDO::FETCH_ASSOC);
+            $details=$stmt->fetch(PDO::FETCH_ASSOC);
+            $_SESSION['userID'] = $details['userID'];
         }catch(PDOException $e)
         {
             $error = "Error: " . $e->getMessage();
@@ -69,5 +70,47 @@ class dbFunctions{
         $sql = "UPDATE users SET email=:email, phoneNumber=:phoneNumber, password=:password isVerified=:isVerified WHERE email=:email";
         $stmt = $db->conn->prepare($sql);
         $stmt->execute($newemail,$phoneNumber,$password,$isVerified,$email);
+    }
+
+    public function storeOtp($otp,$userID){
+        $isExpired = 0; 
+        $db = new DbConn();
+        try
+        {
+            $otpstore = $db->conn->prepare("INSERT INTO `otp` (otp, isExpired, userID) 
+            VALUES ($otp,$isExpired,$userID)");
+            $otpstore->execute();
+        }
+        catch(PDOException $e) 
+        {
+            $error = "Error: " . $e->getMessage();
+            echo '<script type="text/javascript">alert("'.$error.'");</script>';
+        }
+    }
+
+    public function findOtp($otp){
+        $db = new DbConn();
+        try
+        {
+            $sql = "SELECT * FROM `otp` WHERE otp = :otp";
+            $stmt = $db->conn->prepare($sql);
+            $stmt->bindValue(':otp', $otp);
+            $stmt->execute();
+            $stmt->fetch(PDO::FETCH_ASSOC);
+
+        }catch(PDOException $e) 
+        {
+            $error = "Error: " . $e->getMessage();
+            echo '<script type="text/javascript">alert("'.$error.'");</script>';
+        }
+    }
+
+    public function verifyOtp($otp){
+        $db = new DbConn();
+        $isExpired = 1;
+        $sql = "UPDATE otp SET otp=:otp, isExpired=:isExpired WHERE otp=:otp";
+        $stmt = $db->conn->prepare($sql);
+        $stmt->execute($otp,$isExpired);
+
     }
 }

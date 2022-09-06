@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEST</title>
+    <title>App</title>
 </head>
 <body>
     <div>
@@ -12,28 +12,20 @@
             <ul>
                 <li><a href='login.php'>LOGIN</a></li>
 
-                <li class='list-item'><a href='#'>REGISTER</a></li>
+                <li class='list-item'><a href='register.php'>REGISTER</a></li>
 
             </ul>
         </nav>
 
     </div>
-    <?php 
-        ini_set('display_errors', 1);
-        ini_set('display_startup_errors', 1);
-        error_reporting(E_ALL); 
-    ?>
-
-    <div>
-
-    <form class='elevate' action='../workers/register.php' method='post'>
-        <h1>REGISTER</h1>
-        <input required='required' type='email' name='email' placeholder='Email'><br/>
-        <input required='required' type='tel' name='phoneNumber' placeholder='Phone Number'><br/>
-        <input required='required' type='password' name='password' placeholder='Password'><br/>
-        <button name='submit' type='submit'>register</button></form>
-
-    </div>
+    <form class='elevate' action='../workers/dashboard.php' method='post'>
+        <h1>verify</h1>
+        <button name='login' type='submit'>logout</button><br/>
+    </form>
+    <form class='elevate' action='../workers/verify.php' method='post'>
+        <h1>Verify</h1>
+        <button name='login' type='submit'>Verify EMail Address</button><br/>
+    </form>
     <style>
         nav{
             display: flex;

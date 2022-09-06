@@ -10,9 +10,9 @@
     <div>
         <nav>
             <ul>
-                <li><a href='login.php'>LOGIN</a></li>
+                <li><a href='#'>LOGIN</a></li>
 
-                <li class='list-item'><a href='#'>REGISTER</a></li>
+                <li class='list-item'><a href='register.php'>REGISTER</a></li>
 
             </ul>
         </nav>
@@ -26,12 +26,12 @@
 
     <div>
 
-    <form class='elevate' action='../workers/register.php' method='post'>
-        <h1>REGISTER</h1>
-        <input required='required' type='email' name='email' placeholder='Email'><br/>
-        <input required='required' type='tel' name='phoneNumber' placeholder='Phone Number'><br/>
-        <input required='required' type='password' name='password' placeholder='Password'><br/>
-        <button name='submit' type='submit'>register</button></form>
+    <form class='elevate' action='../workers/otpLogin.php' method='post'>
+        <h1>OTP LOGIN</h1>
+        <input required='required' type='text' name='otp' placeholder='One Time Password'><br/>
+        <button name='login' type='submit'>login</button><br/>
+    </form>
+    
 
     </div>
     <style>

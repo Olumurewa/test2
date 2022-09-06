@@ -22,10 +22,11 @@ class authController{
                 $validPassword = password_verify($passwordAttempt, $user['password']);
                 if($validPassword)
                 {
+                    $_SESSION['userID'] = $user['userID'];
                     $_SESSION['email'] = $email;
                     if($user['isVerified'] == 0){
                         echo '<script>alert("You have not verified your E-mail")</script>';
-                        echo '<script>window.location.replace("verify.php");</script>';
+                        echo '<script>window.location.replace("dashboard.php");</script>';
                     }
                 } 
                 else
@@ -40,6 +41,12 @@ class authController{
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
         }
         
+    }
+    public function Logout(){
+        unset($_SESSION['email']);
+        unset($_SESSION['userID']);
+        echo '<script>alert("Logged Out")</script>';
+        echo '<script>window.location.replace("login.php");</script>';
     }
 
 

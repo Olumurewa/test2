@@ -15,7 +15,7 @@ if (isset($url['query'])){
             $input['isVerified']=1;
             $ins->updateUser($_SESSION['email'], $input['isVerified']);
             echo '<script type="text/javascript">alert("Verified");</script>';
-            echo '<script>window.location.replace("../login.php");</script>';
+            echo '<script>window.location.replace("../Dashboard.php");</script>';
         }else{
             echo '<script>ERROR!</script>';
         }

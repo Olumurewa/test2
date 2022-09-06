@@ -1,6 +1,6 @@
 <?php
-require '../database/dbFunctions.php';
-require '../models/User.php';
+require_once '../database/dbFunctions.php';
+require_once '../models/User.php';
 
 
 
@@ -39,6 +39,17 @@ class userController{
         $func= new dbFunctions;
         try{
             $func->idSearch($id);
+        }catch(Exception $e){
+            $error = "Error: " . $e->getMessage();
+            echo '<script type="text/javascript">alert("'.$error.'");</script>';
+        }
+    }
+
+    public function getUser($email){
+        $func= new dbFunctions;
+        try{
+            $func->emailSearch($email);
+            
         }catch(Exception $e){
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
