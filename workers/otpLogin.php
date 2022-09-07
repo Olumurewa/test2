@@ -2,7 +2,7 @@
 use test2\controllers as controllers;
 
 
-
+require 'caller.php';
 if(isset($_POST['submit'])){  
     $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
     

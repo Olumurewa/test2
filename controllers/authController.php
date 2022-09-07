@@ -17,6 +17,7 @@ class authController{
      */
     public function Login($email, $passwordAttempt)
     {
+        require '../database/db.php';
         $db = new data\DbConn();
         $sql = "SELECT * FROM `users` WHERE email = :email";
         try{

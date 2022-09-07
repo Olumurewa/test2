@@ -1,7 +1,7 @@
 <?php
 namespace test2\controllers;
 
-
+require '../database/dbFunctions.php';
 use test2\database as data;
 
 

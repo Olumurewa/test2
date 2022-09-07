@@ -2,7 +2,7 @@
 use test2\controllers as controllers;
 
 require '../views/register.view.php';
-
+require 'caller.php';
 
 if(isset($_POST['submit'])){ 
     try{

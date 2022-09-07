@@ -1,6 +1,9 @@
 <?php
-require '../views/dashboard.view.php';
 use test2\controllers as controllers;
+require '../views/dashboard.view.php';
+
+
+require 'caller.php';
 
 
 if(!isset($_SESSION['email'])){

@@ -1,6 +1,8 @@
 <?php
 use test2\controllers as controllers;
 
+require 'caller.php';
+
 $user = $_SESSION['email'];
                     
 require_once 'callable.php';
