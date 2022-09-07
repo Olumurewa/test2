@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
     $passwordAttempt = !empty($_POST['password']) ? trim($_POST['password']) : null;
     
     $func = new Controllers\AuthController;
-    $func->Login($email, $passwordAttempt);
+    $func->login($email, $passwordAttempt);
 
 }
 

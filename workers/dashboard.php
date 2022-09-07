@@ -15,5 +15,5 @@ if(!isset($_SESSION['email'])){
 
 if(isset($_POST['login'])){
     $begin = new Controllers\AuthController;
-    $begin->Logout();
+    $begin->logout();
 }

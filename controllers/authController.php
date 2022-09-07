@@ -15,7 +15,7 @@ class AuthController{
      * @param string $email
      * @param string $passwordAttempt
      */
-    public function Login($email, $passwordAttempt)
+    public function login($email, $passwordAttempt)
     {
         
         $db = new data\DbConn();
@@ -60,7 +60,7 @@ class AuthController{
      * 
      * function to perform Logout operation
      */
-    public function Logout(){
+    public function logout(){
         session_unset();
         session_destroy();
         header("location:login.php");
