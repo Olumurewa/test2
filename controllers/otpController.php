@@ -1,5 +1,8 @@
 <?php
-require_once '../database/dbFunctions.php';
+namespace test2\controllers;
+
+
+use test2\database as data;
 
 
 class OtpController{
@@ -12,7 +15,7 @@ class OtpController{
     public function otpGenerator($userID){
 
         $otp = rand(100000, 999999);
-        $func = new dbFunctions;
+        $func = new data\dbFunctions;
         $func->storeOtp($otp,$userID);
         echo '<script type="text/javascript">alert("COPY: '.$otp.'");</script>';
         
@@ -26,7 +29,7 @@ class OtpController{
      * @param int $otp
      */
     public function confirmOtp($otp){
-        $func = new dbFunctions;
+        $func = new data\dbFunctions;
         $func->findOtp($otp);
         var_dump($_SESSION);
         $value = $_SESSION['otp'];

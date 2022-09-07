@@ -1,5 +1,7 @@
 <?php
+namespace test2\controllers;
 
+use test2\database as data;
 class hashGenerator{
     private $SecretKey = "Ringsaroundtheroses";
 

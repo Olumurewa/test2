@@ -1,5 +1,7 @@
 <?php
-require_once '../database/dbFunctions.php';
+namespace test2\controllers;
+
+use test2\database as data;
 
 /**
  * class for authentication management
@@ -15,13 +17,13 @@ class authController{
      */
     public function Login($email, $passwordAttempt)
     {
-        $db = new DbConn();
+        $db = new data\DbConn();
         $sql = "SELECT * FROM `users` WHERE email = :email";
         try{
             $stmt = $db->conn->prepare($sql);
             $stmt->bindValue(':email', $email);
             $stmt->execute();
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $user = $stmt->fetch(\PDO::FETCH_ASSOC);
             if($user === false)
             {
                 echo '<script>alert("invalid email or password")</script>';
@@ -44,7 +46,7 @@ class authController{
                 }
             }
             
-        }catch(PDOException $e) 
+        }catch(\PDOException $e) 
         {
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';

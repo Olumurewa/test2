@@ -1,4 +1,5 @@
 <?php
+use test2\controllers as controllers;
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -6,7 +7,7 @@ error_reporting(E_ALL);
 $url = parse_url($_SERVER['REQUEST_URI']);
 if (isset($url['query'])){
     require 'controllers/hashGenerator.php';
-    $instance = new hashGenerator;
+    $instance = new controllers\hashGenerator;
     $instance->decryptHash();
     // try{
     //     $result = password_verify($url['query'], $instance->hashQuery->queryString);

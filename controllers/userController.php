@@ -1,5 +1,8 @@
 <?php
-require_once '../database/dbFunctions.php';
+namespace test2\controllers;
+
+
+use test2\database as data;
 
 
 
@@ -14,10 +17,10 @@ class userController{
      * @param string $password
      */
     public function registerUser($email,$phoneNumber,$password){
-        $func = new dbFunctions;
+        $func = new data\dbFunctions;
         try{
             $func->storeUsers($email,$phoneNumber,$password,0);
-        }catch(Exception $e){
+        }catch(\Exception $e){
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
         } 
@@ -33,14 +36,14 @@ class userController{
      * @param string $input
      */
     public function updateUser($email, $input){
-        $func = new dbFunctions;
+        $func = new data\dbFunctions;
         try{
-            $db = new DbConn();
+            $db = new data\DbConn();
             $sql = "SELECT * FROM `users` WHERE email = :email";
                 $stmt = $db->conn->prepare($sql);
                 $stmt->bindValue(':email', $email);
                 $stmt->execute();
-                $user = $stmt->fetch(PDO::FETCH_ASSOC); //fetching user information from email
+                $user = $stmt->fetch(\PDO::FETCH_ASSOC); //fetching user information from email
                 echo '<pre>';
                 var_dump($user);
                 echo '</pre>';
@@ -51,7 +54,7 @@ class userController{
 
                 $func->updateUser($email,$newemail,$phoneNumber,$password,$isVerified);
         
-        }catch(Exception $e){
+        }catch(\Exception $e){
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
         }
@@ -63,13 +66,13 @@ class userController{
      * @param int $input
      */
     public function verifyUser($email, $input){
-        $func = new dbFunctions;
+        $func = new data\dbFunctions;
         try{
-            $db = new DbConn();
+            $db = new data\DbConn();
             $sql = "SELECT * FROM `users` WHERE email = $email";
                 $stmt = $db->conn->prepare($sql);
                 $stmt->execute();
-                $user = $stmt->fetch(PDO::FETCH_ASSOC); //fetching user information from email
+                $user = $stmt->fetch(\PDO::FETCH_ASSOC); //fetching user information from email
                 echo '<pre>';
                 var_dump($user);
                 echo '</pre>';
@@ -80,7 +83,7 @@ class userController{
 
                 $func->updateUser($email,$newemail,$phoneNumber,$password,$isVerified);
         
-        }catch(Exception $e){
+        }catch(\Exception $e){
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
         }
@@ -92,10 +95,10 @@ class userController{
      * @param int $id
      */
     public function fetchUser($id){
-        $func= new dbFunctions;
+        $func= new data\dbFunctions;
         try{
             $func->idSearch($id);
-        }catch(Exception $e){
+        }catch(\Exception $e){
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
         }
@@ -107,11 +110,11 @@ class userController{
      * @param string $email
      */
     public function getUser($email){
-        $func= new dbFunctions;
+        $func= new data\dbFunctions;
         try{
             $func->emailSearch($email);
             
-        }catch(Exception $e){
+        }catch(\Exception $e){
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
         }
@@ -125,10 +128,10 @@ class userController{
      * @param string $email
      */
     public function deleteUser($email){
-        $func= new dbFunctions;
+        $func= new data\dbFunctions;
         try{
             $func->deleteUsers($email);
-        }catch(Exception $e){
+        }catch(\Exception $e){
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
         }

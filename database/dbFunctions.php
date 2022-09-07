@@ -1,4 +1,5 @@
 <?php
+namespace test2\database;
 
 require 'db.php';
 
@@ -28,7 +29,7 @@ class dbFunctions{
             $stmt->bindParam(':isVerified', $isVerified);
            
             $stmt->execute();
-        }catch(PDOException $e)
+        }catch(\PDOException $e)
         {
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
@@ -47,7 +48,7 @@ class dbFunctions{
         try{
             $stmt = $db->conn->prepare($sql);
             $stmt->execute([$email]);
-        }catch(PDOException $e)
+        }catch(\PDOException $e)
         {
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
@@ -69,7 +70,7 @@ class dbFunctions{
             $stmt = $db->conn->prepare($sql);
             $stmt->bindParam(':email',$email);
             $stmt->execute();
-            $details=$stmt->fetch(PDO::FETCH_ASSOC);
+            $details=$stmt->fetch(\PDO::FETCH_ASSOC);
             // echo '<pre>';
             // var_dump($details);
             // echo '</pre>';
@@ -79,7 +80,7 @@ class dbFunctions{
             // $_SESSION['password'] = $details['password'];
             // $_SESSION['isVerified'] = $details['isVerified'];
             //var_dump($details);
-        }catch(PDOException $e)
+        }catch(\PDOException $e)
         {
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
@@ -98,7 +99,7 @@ class dbFunctions{
         try{
             $stmt = $db->conn->prepare($sql);
             $stmt->execute([$id]);
-        }catch(PDOException $e)
+        }catch(\PDOException $e)
         {
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
@@ -140,7 +141,7 @@ class dbFunctions{
             VALUES ($otp,$isExpired,$userID)");
             $otpstore->execute();
         }
-        catch(PDOException $e) 
+        catch(\PDOException $e) 
         {
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
@@ -161,12 +162,12 @@ class dbFunctions{
             $stmt = $db->conn->prepare($sql);
             $stmt->bindValue(':otp', $otp);
             $stmt->execute();
-            $details = $stmt->fetch(PDO::FETCH_ASSOC);
+            $details = $stmt->fetch(\PDO::FETCH_ASSOC);
             $_SESSION['otp'] = $details['isExpired'];
             $_SESSION['otpUID'] = $details['userID'];
 
 
-        }catch(PDOException $e) 
+        }catch(\PDOException $e) 
         {
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';

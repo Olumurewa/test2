@@ -1,6 +1,8 @@
 <?php 
+use test2\controllers as controllers;
+
 require '../views/register.view.php';
-require 'callable.php';
+
 
 if(isset($_POST['submit'])){ 
     try{
@@ -9,9 +11,9 @@ if(isset($_POST['submit'])){
         $pass = $_POST['password'];
         $password = password_hash($pass, PASSWORD_BCRYPT);
 
-        $instance = new userController();
+        $instance = new controllers\userController();
         $instance->registerUser($email,$phoneNumber,$password);
-    }catch(PDOException $e)
+    }catch(\PDOException $e)
     {
         $error = "Error: " . $e->getMessage();
         echo '<script type="text/javascript">alert("'.$error.'");</script>';

@@ -1,6 +1,6 @@
 <?php
 require '../views/dashboard.view.php';
-require 'callable.php';
+use test2\controllers as controllers;
 
 
 if(!isset($_SESSION['email'])){
@@ -11,6 +11,6 @@ if(!isset($_SESSION['email'])){
 
 
 if(isset($_POST['login'])){
-    $begin = new authController;
+    $begin = new controllers\authController;
     $begin->Logout();
 }

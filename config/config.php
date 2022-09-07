@@ -1,5 +1,5 @@
 <?php
-$DB_HOST = '127.0.0.1';  
-$DB_USER = 'root';  
-$DB_PASSWORD = 'password';  
-$DB_DATABSE = 'test';
+define($DB_HOST,'127.0.0.1');  
+define($DB_USER, 'root');  
+define($DB_PASSWORD, 'password');  
+define($DB_DATABSE, 'test');
