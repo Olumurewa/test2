@@ -1,8 +1,8 @@
 <?php 
-use test2\controllers as controllers;
+use Test2\controllers as Controllers;
 
 require '../views/register.view.php';
-require 'caller.php';
+// require 'caller.php';
 
 if(isset($_POST['submit'])){ 
     try{
@@ -11,7 +11,7 @@ if(isset($_POST['submit'])){
         $pass = $_POST['password'];
         $password = password_hash($pass, PASSWORD_BCRYPT);
 
-        $instance = new controllers\userController();
+        $instance = new Controllers\UserController();
         $instance->registerUser($email,$phoneNumber,$password);
     }catch(\PDOException $e)
     {

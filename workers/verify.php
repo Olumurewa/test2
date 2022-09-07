@@ -1,10 +1,10 @@
 <?php
-use test2\controllers as controllers;
+use Test2\controllers as Controllers;
 
 require '../views/verify.view.php';
-require 'caller.php';
+//require 'caller.php';
 
     if(isset($_POST['submit'])){
-        $begin = new controllers\hashGenerator;
+        $begin = new Controllers\HashGenerator;
         $begin->hashQuery();
     }
