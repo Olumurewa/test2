@@ -1,18 +1,16 @@
 <?php
-session_start();
-require '../views/otpLogin.view.php';
-require '../controllers/otpController.php';
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
-$cont = new OtpController;
-$cont->otpGenerator(1);
+require 'callable.php';
 
-if (isset($_POST['login'])){
-    $otp = !empty($_POST['otp']) ? trim($_POST['otp']) : null;
+if(isset($_POST['submit'])){  
+    $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
     
-    $cont->confirmOtp($otp);
+    $func = new userController();
+    $func->getUser($email);
+    $instance = new OtpController;
+    $user = $_SESSION['userID'];
+    $instance->otpGenerator($user);
+    require '../views/otpLogin.view.php';
 
 }
 

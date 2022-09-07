@@ -31,9 +31,13 @@
         <input required='required' type='email' name='email' placeholder='Email'><br/>
         <input  type='password' name='password' placeholder='Password'><br/>
         <button name='submit' type='submit'>login</button><br/>
-        <button name='otp' type='submit'>OTP login</button><br/>
         <a href="">Forgot Password?</a>
-        <a href="../workers/otpLogin.php"> OTP Login</a>
+    </form>
+
+    <form class='elevate' action='../workers/otpLogin.php' method='post'>
+        <h1>LOGIN</h1>
+        <input required='required' type='email' name='email' placeholder='Email'><br/>
+        <button name='submit' type='submit'>Proceed >></button><br/>
     </form>
     
 

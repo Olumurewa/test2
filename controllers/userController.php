@@ -1,11 +1,18 @@
 <?php
 require_once '../database/dbFunctions.php';
-require_once '../models/User.php';
 
 
 
 class userController{
     
+
+    /**
+     * function to register new users
+     * 
+     * @param string $email
+     * @param string $phoneNumber
+     * @param string $password
+     */
     public function registerUser($email,$phoneNumber,$password){
         $func = new dbFunctions;
         try{
@@ -17,10 +24,19 @@ class userController{
 
     }
 
+
+    /**
+     * 
+     * function to fetch and update user details
+     * 
+     * @param string $email
+     * @param string $input
+     */
     public function updateUser($email, $input){
         $func = new dbFunctions;
         try{
-            $func->emailSearch($email);
+            $func->emailSearch($email); //fetching user information from email
+
             if($func->emailSearch->details){
                 $newemail = !empty($input['email']) ? $input['email'] : $func->emailSearch->details['email'];
                 $phoneNumber = !empty($input['phoneNumber']) ? $input['phoneNumber'] : $func->emailSearch->details['phoneNumber'];
@@ -35,6 +51,11 @@ class userController{
         }
     }
 
+    /**
+     * function to get user data 
+     * 
+     * @param int $id
+     */
     public function fetchUser($id){
         $func= new dbFunctions;
         try{
@@ -45,6 +66,11 @@ class userController{
         }
     }
 
+    /**
+     * function to get user data 
+     * 
+     * @param string $email
+     */
     public function getUser($email){
         $func= new dbFunctions;
         try{
@@ -56,6 +82,13 @@ class userController{
         }
     }
 
+
+
+    /**
+     * function to delete user information
+     * 
+     * @param string $email
+     */
     public function deleteUser($email){
         $func= new dbFunctions;
         try{

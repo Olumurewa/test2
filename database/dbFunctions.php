@@ -2,8 +2,20 @@
 
 require 'db.php';
 
+/**
+ * Class to contain database query functions
+ */
 class dbFunctions{
     
+    /**
+     * funtion to store collect and store user info in the database
+     * 
+     * @param string $email
+     * @param string $phoneNumber
+     * @param string $password
+     * @param int isVerified
+     * 
+     */
     public function storeUsers($email,$phoneNumber,$password,$isVerified){
         $db = new DbConn();
         $sql = "INSERT INTO `users` (email, phoneNumber, password, isVerified) VALUES (:email,:phoneNumber, :password,:isVerified)";
@@ -23,6 +35,12 @@ class dbFunctions{
         }
     }
 
+    /**
+     * function to delete users from the database
+     * 
+     * @param string $email
+     * 
+     */
     public function  deleteUsers($email){
         $db = new DbConn();
         $sql = "DELETE FROM users WHERE email=?";
@@ -37,14 +55,24 @@ class dbFunctions{
        
     }
 
+
+    /**
+     * function to find a user from the database via the user email
+     * 
+     * @param string $email
+     * 
+     */
     public function emailSearch($email){
         $db = new DbConn();
-        $sql = "SELECT * FROM users WHERE email=?";
+        $sql = "SELECT * FROM users WHERE email=:email";
         try{
             $stmt = $db->conn->prepare($sql);
-            $stmt->execute([$email]);
+            $stmt->bindParam(':email',$email);
+            $stmt->execute();
             $details=$stmt->fetch(PDO::FETCH_ASSOC);
             $_SESSION['userID'] = $details['userID'];
+            $_SESSION['email'] = $details['email'];
+            //var_dump($details);
         }catch(PDOException $e)
         {
             $error = "Error: " . $e->getMessage();
@@ -52,6 +80,12 @@ class dbFunctions{
         }
     }
 
+    /**
+     * function to find a user from the database via the user id
+     * 
+     * @param int $id
+     * 
+     */
     public function idSearch($id){
         $db = new DbConn();
         $sql = "SELECT * FROM users WHERE id=?";
@@ -65,12 +99,31 @@ class dbFunctions{
         }
     }
 
+
+    /**
+     * function to update database user information
+     * 
+     * @param string $email
+     * @param string $phoneNumber
+     * @param string $password
+     * @param int isVerified
+     * 
+     */
     public function updateUser($email,$newemail,$phoneNumber,$password,$isVerified){
         $db = new DbConn();
         $sql = "UPDATE users SET email=:email, phoneNumber=:phoneNumber, password=:password isVerified=:isVerified WHERE email=:email";
         $stmt = $db->conn->prepare($sql);
         $stmt->execute($newemail,$phoneNumber,$password,$isVerified,$email);
     }
+
+
+    /**
+     * function to save otp in the database
+     * 
+     * @param int $otp
+     * @param int $userID
+     * 
+     */
 
     public function storeOtp($otp,$userID){
         $isExpired = 0; 
@@ -88,6 +141,12 @@ class dbFunctions{
         }
     }
 
+
+    /**
+     * function to search for otp
+     * 
+     * @param int $otp
+     */
     public function findOtp($otp){
         $db = new DbConn();
         try
@@ -96,7 +155,10 @@ class dbFunctions{
             $stmt = $db->conn->prepare($sql);
             $stmt->bindValue(':otp', $otp);
             $stmt->execute();
-            $stmt->fetch(PDO::FETCH_ASSOC);
+            $details = $stmt->fetch(PDO::FETCH_ASSOC);
+            $_SESSION['otp'] = $details['isExpired'];
+            $_SESSION['otpUID'] = $details['userID'];
+
 
         }catch(PDOException $e) 
         {
@@ -105,12 +167,17 @@ class dbFunctions{
         }
     }
 
+    /**
+     * Function to update otp expiry status
+     * 
+     * @param int $otp
+     */
     public function verifyOtp($otp){
         $db = new DbConn();
         $isExpired = 1;
-        $sql = "UPDATE otp SET otp=:otp, isExpired=:isExpired WHERE otp=:otp";
+        $sql = "UPDATE otp SET otp=$otp, isExpired=$isExpired WHERE otp=$otp";
         $stmt = $db->conn->prepare($sql);
-        $stmt->execute($otp,$isExpired);
+        $stmt->execute();
 
     }
 }

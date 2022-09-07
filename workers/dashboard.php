@@ -1,10 +1,6 @@
 <?php
-session_start();
 require '../views/dashboard.view.php';
-require '../controllers/authController.php';
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+require 'callable.php';
 
 
 if(!isset($_SESSION['email'])){
@@ -14,7 +10,7 @@ if(!isset($_SESSION['email'])){
 
 
 
-if(isset($_POST['submit'])){
+if(isset($_POST['login'])){
     $begin = new authController;
     $begin->Logout();
 }

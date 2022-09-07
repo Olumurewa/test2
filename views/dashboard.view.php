@@ -19,12 +19,16 @@
 
     </div>
     <form class='elevate' action='../workers/dashboard.php' method='post'>
-        <h1>verify</h1>
+        <h1>Logout</h1>
         <button name='login' type='submit'>logout</button><br/>
     </form>
     <form class='elevate' action='../workers/verify.php' method='post'>
         <h1>Verify</h1>
         <button name='login' type='submit'>Verify EMail Address</button><br/>
+    </form>
+    <form class='elevate' action='../workers/verifyPhone.php' method='post'>
+        <h1>Verify</h1>
+        <button name='login' type='submit'>Verify Phone Number</button><br/>
     </form>
     <style>
         nav{

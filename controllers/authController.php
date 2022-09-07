@@ -1,9 +1,18 @@
 <?php
-require '../database/dbFunctions.php';
-require '../models/User.php';
+require_once '../database/dbFunctions.php';
 
+/**
+ * class for authentication management
+ * 
+ */
 class authController{
 
+
+    /**
+     * function to perform Login operation and 
+     * @param string $email
+     * @param string $passwordAttempt
+     */
     public function Login($email, $passwordAttempt)
     {
         $db = new DbConn();
@@ -42,11 +51,16 @@ class authController{
         }
         
     }
+
+
+    /**
+     * 
+     * function to perform Logout operation
+     */
     public function Logout(){
-        unset($_SESSION['email']);
-        unset($_SESSION['userID']);
-        echo '<script>alert("Logged Out")</script>';
-        echo '<script>window.location.replace("login.php");</script>';
+        session_unset();
+        session_destroy();
+        header("location:login.php");
     }
 
 

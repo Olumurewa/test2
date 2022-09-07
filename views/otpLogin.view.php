@@ -26,10 +26,10 @@
 
     <div>
 
-    <form class='elevate' action='../workers/otpLogin.php' method='post'>
+    <form class='elevate' action='../workers/otpLoginFinal.php' method='post'>
         <h1>OTP LOGIN</h1>
         <input required='required' type='text' name='otp' placeholder='One Time Password'><br/>
-        <button name='login' type='submit'>login</button><br/>
+        <button name='submit' type='submit'>login</button><br/>
     </form>
     
 

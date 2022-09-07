@@ -1,9 +1,6 @@
 <?php 
 require '../views/register.view.php';
-require '../controllers/userController.php';
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+require 'callable.php';
 
 if(isset($_POST['submit'])){ 
     try{
