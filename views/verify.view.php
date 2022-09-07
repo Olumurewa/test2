@@ -28,7 +28,7 @@
 
     <form class='elevate' action='../workers/verify.php' method='post'>
         <h1>Verify</h1>
-        <p>A mail will be seent to your registered mail<p>
+        <p>A link will be sent to your registered mail<p>
         <button name='submit' type='submit'>Verify</button></form>
 
     </div>

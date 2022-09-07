@@ -35,16 +35,51 @@ class userController{
     public function updateUser($email, $input){
         $func = new dbFunctions;
         try{
-            $func->emailSearch($email); //fetching user information from email
-
-            if($func->emailSearch->details){
-                $newemail = !empty($input['email']) ? $input['email'] : $func->emailSearch->details['email'];
-                $phoneNumber = !empty($input['phoneNumber']) ? $input['phoneNumber'] : $func->emailSearch->details['phoneNumber'];
-                $password = !empty($input['password']) ? $input['password'] : $func->emailSearch->details['password'];
-                $isVerified = !empty($input['isVerified']) ? $input['isVerified'] : $func->emailSearch->details['isVerified'];
+            $db = new DbConn();
+            $sql = "SELECT * FROM `users` WHERE email = :email";
+                $stmt = $db->conn->prepare($sql);
+                $stmt->bindValue(':email', $email);
+                $stmt->execute();
+                $user = $stmt->fetch(PDO::FETCH_ASSOC); //fetching user information from email
+                echo '<pre>';
+                var_dump($user);
+                echo '</pre>';
+                $newemail = !empty($input['email']) ? $input['email'] : $user['email'];
+                $phoneNumber = !empty($input['phoneNumber']) ? $input['phoneNumber'] : $user['phoneNumber'];
+                $password = !empty($input['password']) ? $input['password'] : $user['password'];
+                $isVerified = !empty($input['isVerified']) ? $input['isVerified'] : $user['isVerified'];
 
                 $func->updateUser($email,$newemail,$phoneNumber,$password,$isVerified);
-            }
+        
+        }catch(Exception $e){
+            $error = "Error: " . $e->getMessage();
+            echo '<script type="text/javascript">alert("'.$error.'");</script>';
+        }
+    }
+    /**
+     * fnction to set verification status
+     * 
+     * @param string $email
+     * @param int $input
+     */
+    public function verifyUser($email, $input){
+        $func = new dbFunctions;
+        try{
+            $db = new DbConn();
+            $sql = "SELECT * FROM `users` WHERE email = $email";
+                $stmt = $db->conn->prepare($sql);
+                $stmt->execute();
+                $user = $stmt->fetch(PDO::FETCH_ASSOC); //fetching user information from email
+                echo '<pre>';
+                var_dump($user);
+                echo '</pre>';
+                $newemail =  $user['email'];
+                $phoneNumber = $user['phoneNumber'];
+                $password =  $user['password'];
+                $isVerified = $input;
+
+                $func->updateUser($email,$newemail,$phoneNumber,$password,$isVerified);
+        
         }catch(Exception $e){
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';

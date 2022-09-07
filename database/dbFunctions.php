@@ -70,8 +70,14 @@ class dbFunctions{
             $stmt->bindParam(':email',$email);
             $stmt->execute();
             $details=$stmt->fetch(PDO::FETCH_ASSOC);
-            $_SESSION['userID'] = $details['userID'];
-            $_SESSION['email'] = $details['email'];
+            // echo '<pre>';
+            // var_dump($details);
+            // echo '</pre>';
+            // $_SESSION['userID'] = $details['userID'];
+            // $_SESSION['email'] = $details['email'];
+            // $_SESSION['phoneNumber'] = $details['phoneNumber'];
+            // $_SESSION['password'] = $details['password'];
+            // $_SESSION['isVerified'] = $details['isVerified'];
             //var_dump($details);
         }catch(PDOException $e)
         {
@@ -111,9 +117,9 @@ class dbFunctions{
      */
     public function updateUser($email,$newemail,$phoneNumber,$password,$isVerified){
         $db = new DbConn();
-        $sql = "UPDATE users SET email=:email, phoneNumber=:phoneNumber, password=:password isVerified=:isVerified WHERE email=:email";
+        $sql = "UPDATE users SET email=$newemail, phoneNumber=$phoneNumber, password=$password isVerified=$isVerified WHERE email=$email)";
         $stmt = $db->conn->prepare($sql);
-        $stmt->execute($newemail,$phoneNumber,$password,$isVerified,$email);
+        $stmt->execute();
     }
 
 
