@@ -1,5 +1,5 @@
 <?php
-namespace test2\database;
+namespace Test2\database;
 class DbConn {
     public $conn;
 

@@ -1,13 +1,13 @@
 <?php
 namespace test2\controllers;
 
-use test2\database as data;
+use Test2\database as data;
 
 /**
  * class for authentication management
  * 
  */
-class authController{
+class AuthController{
 
 
     /**
@@ -17,7 +17,7 @@ class authController{
      */
     public function Login($email, $passwordAttempt)
     {
-        require '../database/db.php';
+        
         $db = new data\DbConn();
         $sql = "SELECT * FROM `users` WHERE email = :email";
         try{

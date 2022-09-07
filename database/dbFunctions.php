@@ -1,7 +1,7 @@
 <?php
-namespace test2\database;
+namespace Test2\database;
 
-require 'db.php';
+
 
 /**
  * Class to contain database query functions

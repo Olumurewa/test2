@@ -1,12 +1,12 @@
 <?php
-namespace test2\controllers;
+namespace Test2\controllers;
 
-require '../database/dbFunctions.php';
+
 use test2\database as data;
 
 
 
-class userController{
+class UserController{
     
 
     /**

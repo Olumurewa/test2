@@ -1,8 +1,8 @@
 <?php
-namespace test2\controllers;
+namespace Test2\controllers;
 
 use test2\database as data;
-class hashGenerator{
+class HashGenerator{
     private $SecretKey = "Ringsaroundtheroses";
 
     public function hashQuery(){
