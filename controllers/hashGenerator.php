@@ -2,10 +2,12 @@
 namespace Test2\controllers;
 
 use test2\database as data;
-class HashGenerator{
+class HashGenerator
+{
     private $SecretKey = "Ringsaroundtheroses";
 
-    public function hashQuery(){
+    public function hashQuery()
+    {
         $queryString = $this->SecretKey.' '.rand(1000, 9999);
         $ciphering = "AES-128-CTR";
         $iv_length = openssl_cipher_iv_length($ciphering);
@@ -19,9 +21,11 @@ class HashGenerator{
         echo '<script type="text/javascript">alert("'.$uri.'");</script>';
     }
 
-    public function decryptHash(){
+    public function decryptHash()
+    {
         $url = parse_url($_SERVER['REQUEST_URI']);
-        if (isset($url['query'])){
+        if (isset($url['query']))
+        {
             $sep = explode('=', $url['query']);
             $ciphering = "AES-128-CTR";
             $iv_length = openssl_cipher_iv_length($ciphering);
@@ -32,9 +36,11 @@ class HashGenerator{
             $decryption_key, $options, $decryption_iv);
 
 
-            if(strlen($decryption) == 24){
+            if(strlen($decryption) == 24)
+            {
                 $piece = explode(' ', $decryption);
-                if ($piece[0] === $this->SecretKey){
+                if ($piece[0] === $this->SecretKey)
+                {
                     echo '<script>alert("Redirecting")</script>';
                     echo '<script>window.location.replace("./workers/emailVerify.php");</script>';
                 }

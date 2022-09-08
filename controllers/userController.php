@@ -6,7 +6,8 @@ use test2\database as data;
 
 
 
-class UserController{
+class UserController
+{
     
 
     /**
@@ -16,11 +17,15 @@ class UserController{
      * @param string $phoneNumber
      * @param string $password
      */
-    public function registerUser($email,$phoneNumber,$password){
+    public function registerUser($email,$phoneNumber,$password)
+    {
         $func = new data\dbFunctions;
-        try{
+        try
+        {
             $func->storeUsers($email,$phoneNumber,$password,0);
-        }catch(\Exception $e){
+        }
+        catch(\Exception $e)
+        {
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
         } 
@@ -35,9 +40,11 @@ class UserController{
      * @param string $email
      * @param string $input
      */
-    public function updateUser($email, $input){
+    public function updateUser($email, $input)
+    {
         $func = new data\dbFunctions;
-        try{
+        try
+        {
             $db = new data\DbConn();
             $sql = "SELECT * FROM `users` WHERE email = :email";
                 $stmt = $db->conn->prepare($sql);
@@ -54,7 +61,9 @@ class UserController{
 
                 $func->updateUser($email,$newemail,$phoneNumber,$password,$isVerified);
         
-        }catch(\Exception $e){
+        }
+        catch(\Exception $e)
+        {
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
         }
@@ -65,9 +74,11 @@ class UserController{
      * @param string $email
      * @param int $input
      */
-    public function verifyUser($email, $input){
+    public function verifyUser($email, $input)
+    {
         $func = new data\dbFunctions;
-        try{
+        try
+        {
             $db = new data\DbConn();
             $sql = "SELECT * FROM `users` WHERE email = $email";
                 $stmt = $db->conn->prepare($sql);
@@ -83,7 +94,9 @@ class UserController{
 
                 $func->updateUser($email,$newemail,$phoneNumber,$password,$isVerified);
         
-        }catch(\Exception $e){
+        }
+        catch(\Exception $e)
+        {
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
         }
@@ -94,11 +107,15 @@ class UserController{
      * 
      * @param int $id
      */
-    public function fetchUser($id){
+    public function fetchUser($id)
+    {
         $func= new data\dbFunctions;
-        try{
+        try
+        {
             $func->idSearch($id);
-        }catch(\Exception $e){
+        }
+        catch(\Exception $e)
+        {
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
         }
@@ -109,12 +126,16 @@ class UserController{
      * 
      * @param string $email
      */
-    public function getUser($email){
+    public function getUser($email)
+    {
         $func= new data\dbFunctions;
-        try{
+        try
+        {
             $func->emailSearch($email);
             
-        }catch(\Exception $e){
+        }
+        catch(\Exception $e)
+        {
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
         }
@@ -127,11 +148,15 @@ class UserController{
      * 
      * @param string $email
      */
-    public function deleteUser($email){
+    public function deleteUser($email)
+    {
         $func= new data\dbFunctions;
-        try{
+        try
+        {
             $func->deleteUsers($email);
-        }catch(\Exception $e){
+        }
+        catch(\Exception $e)
+        {
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
         }

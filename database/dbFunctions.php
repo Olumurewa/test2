@@ -6,7 +6,8 @@ namespace Test2\database;
 /**
  * Class to contain database query functions
  */
-class dbFunctions{
+class dbFunctions
+{
     
     /**
      * funtion to store collect and store user info in the database
@@ -17,7 +18,8 @@ class dbFunctions{
      * @param int isVerified
      * 
      */
-    public function storeUsers($email,$phoneNumber,$password,$isVerified){
+    public function storeUsers($email,$phoneNumber,$password,$isVerified)
+    {
         $db = new DbConn();
         $sql = "INSERT INTO `users` (email, phoneNumber, password, isVerified) VALUES (:email,:phoneNumber, :password,:isVerified)";
         try
@@ -29,7 +31,8 @@ class dbFunctions{
             $stmt->bindParam(':isVerified', $isVerified);
            
             $stmt->execute();
-        }catch(\PDOException $e)
+        }
+        catch(\PDOException $e)
         {
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
@@ -42,13 +45,16 @@ class dbFunctions{
      * @param string $email
      * 
      */
-    public function  deleteUsers($email){
+    public function  deleteUsers($email)
+    {
         $db = new DbConn();
         $sql = "DELETE FROM users WHERE email=?";
-        try{
+        try
+        {
             $stmt = $db->conn->prepare($sql);
             $stmt->execute([$email]);
-        }catch(\PDOException $e)
+        }
+        catch(\PDOException $e)
         {
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
@@ -63,10 +69,12 @@ class dbFunctions{
      * @param string $email
      * 
      */
-    public function emailSearch($email){
+    public function emailSearch($email)
+    {
         $db = new DbConn();
         $sql = "SELECT * FROM users WHERE email=:email";
-        try{
+        try
+        {
             $stmt = $db->conn->prepare($sql);
             $stmt->bindParam(':email',$email);
             $stmt->execute();
@@ -80,7 +88,8 @@ class dbFunctions{
             // $_SESSION['password'] = $details['password'];
             // $_SESSION['isVerified'] = $details['isVerified'];
             //var_dump($details);
-        }catch(\PDOException $e)
+        }
+        catch(\PDOException $e)
         {
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
@@ -93,7 +102,8 @@ class dbFunctions{
      * @param int $id
      * 
      */
-    public function idSearch($id){
+    public function idSearch($id)
+    {
         $db = new DbConn();
         $sql = "SELECT * FROM users WHERE id=?";
         try{
@@ -116,7 +126,8 @@ class dbFunctions{
      * @param int isVerified
      * 
      */
-    public function updateUser($email,$newemail,$phoneNumber,$password,$isVerified){
+    public function updateUser($email,$newemail,$phoneNumber,$password,$isVerified)
+    {
         $db = new DbConn();
         $sql = "UPDATE users SET email=$newemail, phoneNumber=$phoneNumber, password=$password isVerified=$isVerified WHERE email=$email)";
         $stmt = $db->conn->prepare($sql);
@@ -132,7 +143,8 @@ class dbFunctions{
      * 
      */
 
-    public function storeOtp($otp,$userID){
+    public function storeOtp($otp,$userID)
+    {
         $isExpired = 0; 
         $db = new DbConn();
         try
@@ -154,7 +166,8 @@ class dbFunctions{
      * 
      * @param int $otp
      */
-    public function findOtp($otp){
+    public function findOtp($otp)
+    {
         $db = new DbConn();
         try
         {
@@ -167,7 +180,8 @@ class dbFunctions{
             $_SESSION['otpUID'] = $details['userID'];
 
 
-        }catch(\PDOException $e) 
+        }
+        catch(\PDOException $e) 
         {
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
@@ -179,7 +193,8 @@ class dbFunctions{
      * 
      * @param int $otp
      */
-    public function verifyOtp($otp){
+    public function verifyOtp($otp)
+    {
         $db = new DbConn();
         $isExpired = 1;
         $sql = "UPDATE otp SET otp=$otp, isExpired=$isExpired WHERE otp=$otp";

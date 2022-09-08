@@ -7,7 +7,8 @@ use Test2\database as data;
  * class for authentication management
  * 
  */
-class AuthController{
+class AuthController
+{
 
 
     /**
@@ -20,7 +21,8 @@ class AuthController{
         
         $db = new data\DbConn();
         $sql = "SELECT * FROM `users` WHERE email = :email";
-        try{
+        try
+        {
             $stmt = $db->conn->prepare($sql);
             $stmt->bindValue(':email', $email);
             $stmt->execute();
@@ -47,7 +49,8 @@ class AuthController{
                 }
             }
             
-        }catch(\PDOException $e) 
+        }
+        catch(\PDOException $e) 
         {
             $error = "Error: " . $e->getMessage();
             echo '<script type="text/javascript">alert("'.$error.'");</script>';
@@ -60,7 +63,8 @@ class AuthController{
      * 
      * function to perform Logout operation
      */
-    public function logout(){
+    public function logout()
+    {
         session_unset();
         session_destroy();
         header("location:login.php");

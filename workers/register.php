@@ -4,8 +4,10 @@ use Test2\controllers as Controllers;
 require '../views/register.view.php';
 // require 'caller.php';
 
-if(isset($_POST['submit'])){ 
-    try{
+if(isset($_POST['submit']))
+{ 
+    try
+    {
         $email = $_POST['email'];
         $phoneNumber = $_POST['phoneNumber'];
         $pass = $_POST['password'];
@@ -13,7 +15,8 @@ if(isset($_POST['submit'])){
 
         $instance = new Controllers\UserController();
         $instance->registerUser($email,$phoneNumber,$password);
-    }catch(\PDOException $e)
+    }
+    catch(\PDOException $e)
     {
         $error = "Error: " . $e->getMessage();
         echo '<script type="text/javascript">alert("'.$error.'");</script>';

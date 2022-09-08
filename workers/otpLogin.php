@@ -3,7 +3,8 @@ use Test2\controllers as Controllers;
 
 
 //require 'caller.php';
-if(isset($_POST['submit'])){  
+if(isset($_POST['submit']))
+{  
     $email = !empty($_POST['email']) ? trim($_POST['email']) : null;
     
     $func = new controllers\UserController();

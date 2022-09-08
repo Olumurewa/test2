@@ -5,7 +5,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 $url = parse_url($_SERVER['REQUEST_URI']);
-if (isset($url['query'])){
+if (isset($url['query']))
+{
     require 'Controllers/hashGenerator.php';
     $instance = new Controllers\HashGenerator;
     $instance->decryptHash();
@@ -26,8 +27,11 @@ if (isset($url['query'])){
     //     echo '<script type="text/javascript">alert("'.$error.'");</script>';
     // }
 
-}else{
-    if(!isset($_SESSION['dancer'])){
+}
+else
+{
+    if(!isset($_SESSION['dancer']))
+    {
         echo '<script>alert("Redirecting")</script>';
         echo '<script>window.location.replace("workers/login.php");</script>';
     }
